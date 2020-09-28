@@ -11,9 +11,10 @@ import kotlinx.android.synthetic.main.list_item_category.view.*
 import xyz.tetatet.vivaquiz.R
 import xyz.tetatet.vivaquiz.extensions.rotate
 import xyz.tetatet.vivaquiz.io.model.fourquare.Venue
+import xyz.tetatet.vivaquiz.io.model.fourquare.Venues
 import xyz.tetatet.vivaquiz.ui.base.BaseAdapter
 
-class CategoriesAdapter : BaseAdapter<MutableList<Venue?>?>() {
+class CategoriesAdapter : BaseAdapter<Venues?>() {
 
     /*Constants --------------------------------------------------------------------------*/
     companion object {
@@ -30,15 +31,15 @@ class CategoriesAdapter : BaseAdapter<MutableList<Venue?>?>() {
 
     inner class PlacesViewHolder(itemView: View) : BaseViewHolder(itemView) {
 
-        private var lastExpandedPosition = -1
 
-        override fun onBindData(item: MutableList<Venue?>?) {
+        override fun onBindData(item: Venues?) {
             itemView.apply {
 
-
-                item?.get(0)?.categories?.get(0)?.let {
+                item?.venues?.get(0)?.categories?.get(0)?.let {
                     categoryTitle.text = it.pluralName
-                    var imagePath = "${it.icon?.prefix?.replace(OLD_STR, NEW_STR)?.trim()}64${it.icon?.suffix?.trim()}"
+                    val imagePath = "${
+                        it.icon?.prefix?.replace(OLD_STR, NEW_STR)?.trim()
+                    }64${it.icon?.suffix?.trim()}"
                     Glide.with(this)
                         .load(imagePath)
                         .centerCrop()
@@ -46,25 +47,25 @@ class CategoriesAdapter : BaseAdapter<MutableList<Venue?>?>() {
                         .diskCacheStrategy(DiskCacheStrategy.DATA)
                         .into(categoryImage)
                 }
-
                 item?.let {
-                    if (item.size > 0) {
+                    if (item.venues?.size ?: 0 > 0) {
                         val placesAdapter = PlacesAdapter()
                         placesRecyclerView?.apply { adapter = placesAdapter }
-                        placesAdapter.apply { set(item.apply { sortBy { it?.location?.distance } }) }
+                        placesAdapter.apply {
+                            item.venues?.apply { sortBy { it?.location?.distance } }?.let { set(it) }
+                        }
                     }
                 }
-//TODO EXPANDABLE LIST ITEM IMPLEMENTATION
-//                placesRecyclerView.isVisible = lastExpandedPosition == adapterPosition
+                item?.let {
+                    placesRecyclerView.isVisible = it.isExpanded
+                    toggleBtn.rotate(if (it.isExpanded) 180f else 0f, 0L).subscribe()
+                }
                 setOnClickListener {
-                    placesRecyclerView.isVisible = !placesRecyclerView.isVisible
-                    toggleBtn.rotate(if (placesRecyclerView.isVisible) 180f else 0f, 300L).subscribe()
-//                    if (placesRecyclerView.isVisible) {
-//                        lastExpandedPosition = adapterPosition
-//                        eventClick.onNext(adapterPosition)
-//                    } else {
-//                        lastExpandedPosition = -1
-//                    }
+                    item?.isExpanded?.apply{
+                        placesRecyclerView.isVisible = !this
+                        item.isExpanded = !this
+                        toggleBtn.rotate(if (item.isExpanded) 180f else 0f, 300L).subscribe()
+                    }
                 }
             }
         }

@@ -43,6 +43,7 @@ import xyz.tetatet.vivaquiz.extensions.isKeyboardOpen
 import xyz.tetatet.vivaquiz.extensions.setFullWidth
 import xyz.tetatet.vivaquiz.io.model.fourquare.FoursquareResponse
 import xyz.tetatet.vivaquiz.io.model.fourquare.Venue
+import xyz.tetatet.vivaquiz.io.model.fourquare.Venues
 import xyz.tetatet.vivaquiz.io.model.viva.Product
 import xyz.tetatet.vivaquiz.ui.application.BaseApplication
 import xyz.tetatet.vivaquiz.ui.base.BaseActivity
@@ -193,7 +194,13 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,
 /* <**************> EXTRA FEATURES IMPLEMENTATIONS <**************> */
 
     private fun initDrawer() {
-        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawer, toolbarMain, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        actionBarDrawerToggle = ActionBarDrawerToggle(
+            this,
+            drawer,
+            toolbarMain,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
         actionBarDrawerToggle.isDrawerIndicatorEnabled = false
         drawerIcon = ContextCompat.getDrawable(this, R.drawable.ic_drawer)
         actionBarDrawerToggle.setHomeAsUpIndicator(drawerIcon)
@@ -202,7 +209,10 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,
             messagesController.dismiss()
             drawer.openDrawer(GravityCompat.START)
         }
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.searchView))
+        drawer.setDrawerLockMode(
+            DrawerLayout.LOCK_MODE_LOCKED_CLOSED,
+            findViewById(R.id.searchView)
+        )
         searchView.setFullWidth(windowManager)
 //        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 //        navigationView.setFullWidth(windowManager)
@@ -218,7 +228,7 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,
     }
 
     override fun applyTheme(isDarkTheme: Boolean) {
-        when(isDarkTheme){
+        when (isDarkTheme) {
             true -> darkThemeSwitch.text = getString(R.string.disable_dark_theme)
             else -> darkThemeSwitch.text = getString(R.string.enable_dark_theme)
         }
@@ -226,25 +236,35 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,
     }
 
     private fun setThemeListener() {
-        darkThemeSwitch.setOnCheckedChangeListener { _, checked -> preferencesRepository.isDarkTheme = checked }
+        darkThemeSwitch.setOnCheckedChangeListener { _, checked ->
+            preferencesRepository.isDarkTheme = checked
+        }
     }
 
-    override fun applyCategory(category: Int){
-        when(category){
+    override fun applyCategory(category: Int) {
+        when (category) {
             1 -> radioGroup.check(R.id.radioRestaurants)
             2 -> radioGroup.check(R.id.radioEvents)
             3 -> radioGroup.check(R.id.radioPharmacies)
-            else -> {}
+            else -> {
+            }
         }
     }
 
     private fun setCategoriesListener() {
         radioGroup.setOnCheckedChangeListener { _, checked ->
-            when(checked){
-                R.id.radioRestaurants -> { preferencesRepository.category = 1}
-                R.id.radioEvents -> { preferencesRepository.category = 2}
-                R.id.radioPharmacies -> { preferencesRepository.category = 3 }
-                else -> {}
+            when (checked) {
+                R.id.radioRestaurants -> {
+                    preferencesRepository.category = 1
+                }
+                R.id.radioEvents -> {
+                    preferencesRepository.category = 2
+                }
+                R.id.radioPharmacies -> {
+                    preferencesRepository.category = 3
+                }
+                else -> {
+                }
             }
 
         }
@@ -255,12 +275,12 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,
         categoriesAdapter = CategoriesAdapter().apply {
             categoriesRecyclerView.adapter = this
             eventClick.doOnNext { position ->
-//                for (pos in 0..categoriesAdapter.itemCount){
-//                    if(pos!=position) categoriesAdapter.notifyItemChanged(pos)
-//                }
+                for (pos in 0..categoriesAdapter.itemCount) {
+                    if (pos != position) categoriesAdapter.notifyItemChanged(pos)
+                }
             }.subscribe()
         }
-        searchBar.setOnTouchListener{ _, event ->
+        searchBar.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 if (event.rawX >= searchBar.right - searchBar.compoundDrawables[2].bounds.width() - searchBar.paddingEnd) {
                     resetSearchView()
@@ -299,7 +319,7 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,
         )
     }
 
-    private fun resetSearchView(){
+    private fun resetSearchView() {
         categoriesAdapter.clearData()
         googlePredictionsAdapter?.clearData()
         searchBar.setText("")
@@ -332,7 +352,17 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,
         googlePredictionsAdapter?.clearData()
         googleLabel.isVisible = false
         placesClient
-            .fetchPlace(FetchPlaceRequest.builder(placeId, arrayListOf(Place.Field.ID, Place.Field.ADDRESS, Place.Field.NAME, Place.Field.LAT_LNG)).build())
+            .fetchPlace(
+                FetchPlaceRequest.builder(
+                    placeId,
+                    arrayListOf(
+                        Place.Field.ID,
+                        Place.Field.ADDRESS,
+                        Place.Field.NAME,
+                        Place.Field.LAT_LNG
+                    )
+                ).build()
+            )
             .addOnSuccessListener { fetchPlaceResponse ->
                 selectedAddress = fetchPlaceResponse.place
                 fulladdress = placeName
@@ -349,32 +379,33 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,
     }
 
     private fun getFoursquarePlaces(lat: Double, lng: Double) {
-        presenter?.getFoursquarePlaces("${lat},${lng}", getString(R.string.fouresquare_api_id), getString(R.string.fouresquare_api_secret),preferencesRepository.category)
+        presenter?.getFoursquarePlaces(
+            "${lat},${lng}",
+            getString(R.string.fouresquare_api_id),
+            getString(R.string.fouresquare_api_secret),
+            preferencesRepository.category
+        )
     }
 
     override fun foursquareSuccess(foursquare: FoursquareResponse) {
         val allVenues = foursquare.response?.venues
-        val categorizedList: MutableList<MutableList<Venue?>?> = mutableListOf()
+        val categorizedList: MutableList<Venues?> = mutableListOf()
         foursquare.response?.venues?.distinctBy { it?.categories?.get(0)?.name }
             ?.forEach { uniqueCategory ->
-                val categoryList: MutableList<Venue?> = mutableListOf()
+                val categoryList: Venues = Venues()
                 allVenues?.forEach {
                     if (uniqueCategory?.categories?.get(0)?.name == it?.categories?.get(0)?.name) {
-                        categoryList.add(
-                            it
-                        )
+                        categoryList.venues?.add(it)
                     }
                 }
                 categorizedList.add(categoryList)
             }
-
-        if (categorizedList.size > 0) {
-            categoriesAdapter.apply {
-                set(categorizedList.apply {
-                    sortBy { it?.get(0)?.categories?.get(0)?.pluralName }
-                })
+        categorizedList.apply { sortBy { it?.venues?.get(0)?.categories?.get(0)?.pluralName } }
+            .let { venues ->
+                if (categorizedList.size > 0) {
+                    categoriesAdapter.apply { set(venues) }
+                }
             }
-        }
     }
 
     private fun handleKeyboard(function: () -> Unit = {}) {

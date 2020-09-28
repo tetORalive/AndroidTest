@@ -17,7 +17,8 @@ class Meta(
 ) : Parcelable
 @Parcelize
 class Venues(
-        @Expose val venues: MutableList<Venue?>? = mutableListOf()
+        @Expose val venues: MutableList<Venue?>? = mutableListOf(),
+        var isExpanded: Boolean = false
 ) : Parcelable
 @Parcelize
 class Venue(
