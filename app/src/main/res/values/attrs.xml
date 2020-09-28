@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Common attributes-->
+    <attr name="colorGrey" format="color"/>
+    <attr name="googleIcon" format="integer" />
+
+</resources>

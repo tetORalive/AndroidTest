@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Color palette-->
+
+    <color name="colorPrimaryDay">#8965BC</color>               <!--Color primary-->
+    <color name="colorPrimaryNight">#bb86fc</color>             <!--Color primary variant-->
+    <color name="colorPrimaryVariantDay">#4B1E8A</color>        <!--Color primary-->
+    <color name="colorPrimaryVariantNight">#6B499C</color>      <!--Color primary variant-->
+
+    <color name="colorAccent">#03DAC5</color>                   <!--Color secondary-->
+    <color name="colorAccentVariant">#0C8A7E</color>            <!--Color secondary variant-->
+
+    <color name="colorErrorDay">#b00020</color>                 <!--Color error (light)-->
+    <color name="colorErrorNight">#cf6679</color>               <!--Color error (dark)-->
+
+    <color name="colorSurfaceDay">#ffffff</color>               <!--Color surface (light)-->
+    <color name="colorSurfaceNight">#121212</color>             <!--Color surface (dark)-->
+    <!--Color on secondary (light), color on background (light),-->
+    <!--color on surface (light)-->
+    <color name="colorOnSecondary">#000000</color>
+
+    <!--Custom colors -->
+    <color name="colorHome">#2196F3</color>
+    <color name="colorMenu">#842D97</color>
+    <color name="colorLogin">#BBCC1A</color>
+    <color name="colorProfile">#CC761A</color>
+
+</resources>

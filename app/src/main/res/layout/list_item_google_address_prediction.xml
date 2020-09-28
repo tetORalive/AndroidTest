@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/space_medium"
+    android:paddingEnd="@dimen/space_medium">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:paddingTop="@dimen/space_medium"
+        android:paddingBottom="@dimen/space_normal"
+        android:id="@+id/googlePrediction"
+        style="@style/TextAppearance.MyTheme.Body.Normal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:textSize="@dimen/text_x_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="test"
+        tools:visibility="visible" />
+    <View
+        android:id="@+id/line_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_small"
+        android:layout_marginTop="@dimen/space_small"
+        android:background="?colorGrey"
+        app:layout_constraintTop_toBottomOf="@id/googlePrediction" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.navigation.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settingsView"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="?attr/colorSurface"
+    android:fitsSystemWindows="false">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_ActionBarHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="?attr/actionBarSize" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_15_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_25_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_35_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_45_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_55_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_65_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_10_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_90_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.90" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_65_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?colorSurface"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/cancelBtn"
+            android:layout_width="@dimen/icon_x_large"
+            android:layout_height="@dimen/icon_x_large"
+            android:layout_marginEnd="@dimen/space_medium"
+            android:alpha="1.0"
+            android:src="@drawable/ic_cancel_oval"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_ActionBarHeight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.MyTheme.Title.Bold.Large"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_medium"
+            android:text="@string/settings_title"
+            android:textColor="?colorPrimary"
+            android:textStyle="normal"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_ActionBarHeight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.MyTheme.Title.Normal.Large"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/theme_settings_title"
+            android:textAlignment="viewStart"
+            android:textColor="?colorPrimary"
+            app:layout_constraintBottom_toTopOf="@id/gl_15_horizontal"
+            app:layout_constraintEnd_toEndOf="@id/gl_90_vertical"
+            app:layout_constraintStart_toStartOf="@id/gl_10_vertical" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/darkThemeSwitch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:text="@string/enable_dark_theme"
+            app:layout_constraintBottom_toTopOf="@id/gl_25_horizontal"
+            app:layout_constraintEnd_toEndOf="@id/gl_90_vertical"
+            app:layout_constraintStart_toStartOf="@id/gl_10_vertical"
+            app:layout_constraintTop_toTopOf="@id/gl_15_horizontal" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.MyTheme.Title.Normal.Large"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/search_settings_title"
+            android:textAlignment="viewStart"
+            android:textColor="?colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@id/gl_35_horizontal"
+            app:layout_constraintEnd_toEndOf="@id/gl_90_vertical"
+            app:layout_constraintStart_toStartOf="@id/gl_10_vertical" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/radioRestaurants"
+            app:layout_constraintEnd_toEndOf="@id/gl_90_vertical"
+            app:layout_constraintStart_toStartOf="@id/gl_10_vertical"
+            app:layout_constraintTop_toTopOf="@id/gl_35_horizontal">
+
+            <RadioButton
+                android:id="@+id/radioRestaurants"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/restaurants_radio" />
+
+            <RadioButton
+                android:id="@+id/radioEvents"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/events_radio" />
+
+            <RadioButton
+                android:id="@+id/radioPharmacies"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/pharmacies_radio" />
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.navigation.NavigationView>
+

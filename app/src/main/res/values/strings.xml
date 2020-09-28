@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Viva Quiz</string>
+    <string name="app_name_cap">VIVA QUIZ</string>
+
+    <string name="errors_retry">TRY AGAIN</string>
+    <string name="error_service_common_message">Non available service</string>
+    <string name="warning_offline">You are offline. Check your connection!</string>
+    <string name="navigation_drawer_open">Drawer Open</string>
+    <string name="navigation_drawer_close">Drawer Closed</string>
+    <string name="progress_loading" translatable="false">Loading...</string>
+
+    <!--Product details-->
+    <string name="product_name">Name</string>
+    <string name="product_description">Description</string>
+    <string name="product_price">Price</string>
+
+
+    <!--Settings-->
+    <string name="enable_dark_theme">Enable dark theme</string>
+    <string name="disable_dark_theme">Disable dark theme</string>
+    <string name="restaurants_radio">Food &amp; Beverages</string>
+    <string name="events_radio">Museums</string>
+    <string name="pharmacies_radio">Pharmacies</string>
+    <string name="settings_title">Settings</string>
+    <string name="search_settings_title">Search for</string>
+    <string name="theme_settings_title">Theme selection</string>
+
+</resources>
